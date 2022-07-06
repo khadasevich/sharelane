@@ -57,6 +57,7 @@ public class SignUpTest {
         //Add check
         WebElement errorMessage = driver.findElement(By.className("error_message"));
         boolean isErrorDisplayed = errorMessage.isDisplayed();
+
         driver.quit();
         Assert.assertTrue(isErrorDisplayed, "Error message isn't displayed");
     }
