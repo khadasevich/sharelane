@@ -1,3 +1,4 @@
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,8 +22,10 @@ public class SignUpTest {
         //Add check
         WebElement registerButton = driver.findElement(By.cssSelector("[value=Register]"));
         boolean isRegisterDisplayed = registerButton.isDisplayed();
+        driver.findElement(By.cssSelector("[value=Register]")).getAttribute("value");
         driver.quit();
         Assert.assertTrue(isRegisterDisplayed, "'Register' button isn't displayed");
+
     }
 
     @Test
@@ -72,16 +75,18 @@ public class SignUpTest {
         driver.get("https://www.sharelane.com/cgi-bin/register.py");
 
         //input 5 digits into input field
-        driver.findElement(By.name("zip_code")).sendKeys("12345");
+        Faker faker = new Faker();
+        driver.findElement(By.name("zip_code")).sendKeys(faker.numerify("#####"));
 
         //click "Continue"
         driver.findElement(By.cssSelector("[value=Continue]")).click();
 
+
         //input first name into input field First Name
-        driver.findElement(By.name("first_name")).sendKeys("Petr");
+        driver.findElement(By.name("first_name")).sendKeys(faker.name().firstName());
 
         //input last name into input field Last Name
-        driver.findElement(By.name("last_name")).sendKeys("Petrov");
+        driver.findElement(By.name("last_name")).sendKeys(faker.name().lastName());
 
         //input email into input field Email
         driver.findElement(By.name("email")).sendKeys("p1@gmail.com");
