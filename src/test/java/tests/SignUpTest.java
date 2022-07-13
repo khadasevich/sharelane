@@ -1,30 +1,13 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import constants.Urls;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.FakeMessageGenerator;
-import utils.PropertyManager;
 
-public class SignUpTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setUp() {
-        //Open Chrome browser
-        PropertyManager propertyManager = new PropertyManager();
-        propertyManager.loadData();
-        System.setProperty("webdriver.chrome.driver", propertyManager.get("PATH_TO_DRIVER"));
-        driver = new ChromeDriver();
-    }
+public class SignUpTest extends BaseTest{
 
     private void sendZipCode(String zipCode) {
         //Open url of zipcode page
@@ -87,10 +70,5 @@ public class SignUpTest {
         WebElement messageAccountIsCreated = driver.findElement(By.className("confirmation_message"));
         boolean isMessageAccountIsCreated = messageAccountIsCreated.isDisplayed();
         Assert.assertTrue(isMessageAccountIsCreated, "'Account is created!' message isn't displayed");
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        driver.quit();
     }
 }
