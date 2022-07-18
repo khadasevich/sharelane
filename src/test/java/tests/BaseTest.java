@@ -13,9 +13,14 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         //Open Chrome browser
+        String os = System.getProperty("os.name");
+        String path = "PATH_TO_DRIVER_WIN";
+        if (!os.contains("Windows")) {
+            path = "PATH_TO_DRIVER_MAC";
+        }
         PropertyManager propertyManager = new PropertyManager();
         propertyManager.loadData();
-        System.setProperty("webdriver.chrome.driver", propertyManager.get("PATH_TO_DRIVER"));
+        System.setProperty("webdriver.chrome.driver", propertyManager.get(path));
         driver = new ChromeDriver();
     }
 
