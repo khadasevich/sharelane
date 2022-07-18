@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.FakeMessageGenerator;
 
-public class SignUpTest extends BaseTest{
+public class SignUpTest extends BaseTest {
 
     private void sendZipCode(String zipCode) {
         //Open url of zipcode page
@@ -60,9 +60,10 @@ public class SignUpTest extends BaseTest{
         //input email into input field Email
         driver.findElement(By.name("email")).sendKeys(FakeMessageGenerator.generateEmail());
         //input password into input field Password
-        driver.findElement(By.name("password1")).sendKeys("qwerty");
+        String password = FakeMessageGenerator.generatePassword();
+        driver.findElement(By.name("password1")).sendKeys(password);
         //input password into input field Password
-        driver.findElement(By.name("password2")).sendKeys("qwerty");
+        driver.findElement(By.name("password2")).sendKeys(password);
         //click "Register"
         driver.findElement(By.cssSelector("[value=Register]")).click();
 

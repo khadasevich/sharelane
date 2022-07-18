@@ -23,4 +23,9 @@ public class FakeMessageGenerator {
         Faker faker = new Faker();
         return faker.internet().emailAddress();
     }
+
+    public static String generatePassword() {
+        Faker faker = new Faker();
+        return faker.letterify("???@1");
+    }
 }
