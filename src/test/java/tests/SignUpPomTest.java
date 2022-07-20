@@ -1,12 +1,9 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.pompages.AccountCreatedPomPage;
 import pages.pompages.SignUpFormPomPage;
-import pages.pompages.ZipcodePomPage;
 import pages.services.SendZipService;
 import utils.FakeMessageGenerator;
 

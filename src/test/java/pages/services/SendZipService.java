@@ -15,7 +15,7 @@ public class SendZipService {
     public void inputZipCode(String zipCode) {
         ZipcodePomPage zipcodePomPage = new ZipcodePomPage(driver);
         zipcodePomPage.openZipCodePage();
-        zipcodePomPage.inputZipcode(FakeMessageGenerator.generateFiveDigitsZipCode());
+        zipcodePomPage.inputZipcode(zipCode);
         zipcodePomPage.clickContinue();
     }
 }
