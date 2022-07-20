@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.FakeMessageGenerator;
 
-public class SignUpTest extends BaseTest {
+public class SignUpWithoutArchitectureTest extends BaseTest {
 
     private void sendZipCode(String zipCode) {
         //Open url of zipcode page

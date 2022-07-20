@@ -1,0 +1,21 @@
+package pages.services;
+
+import org.openqa.selenium.WebDriver;
+import pages.pompages.ZipcodePomPage;
+import utils.FakeMessageGenerator;
+
+public class SendZipService {
+
+    private WebDriver driver;
+
+    public SendZipService(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void inputZipCode(String zipCode) {
+        ZipcodePomPage zipcodePomPage = new ZipcodePomPage(driver);
+        zipcodePomPage.openZipCodePage();
+        zipcodePomPage.inputZipcode(FakeMessageGenerator.generateFiveDigitsZipCode());
+        zipcodePomPage.clickContinue();
+    }
+}

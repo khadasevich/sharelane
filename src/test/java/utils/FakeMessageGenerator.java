@@ -9,6 +9,11 @@ public class FakeMessageGenerator {
         return faker.numerify("####");
     }
 
+    public static String generateFiveDigitsZipCode() {
+        Faker faker = new Faker();
+        return faker.numerify("#####");
+    }
+
     public static String generateFirstName() {
         Faker faker = new Faker();
         return faker.name().firstName();
