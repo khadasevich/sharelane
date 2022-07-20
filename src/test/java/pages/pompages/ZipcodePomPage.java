@@ -24,4 +24,10 @@ public class ZipcodePomPage extends BasePomPage {
     public void clickContinue() {
         driver.findElement(CONTINUE_BUTTON).click();
     }
+
+    public void performZipSend(String zipCode) {
+        driver.get(Urls.REGISTER_FORM_URL);
+        driver.findElement(ZIPCODE_INPUT).sendKeys(zipCode);
+        driver.findElement(CONTINUE_BUTTON).click();
+    }
 }
