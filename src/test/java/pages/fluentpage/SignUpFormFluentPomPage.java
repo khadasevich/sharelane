@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.pompages.BasePomPage;
 
-public class SignUpFormFluentPomPage extends BasePomPage {
+public class SignUpFormFluentPomPage extends BaseFluentPomPage {
 
     private By REGISTER_BUTTON = By.cssSelector("[value=Register]");
 

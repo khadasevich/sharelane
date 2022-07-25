@@ -1,32 +1,34 @@
-package pages.fluentpage;
+package pages.loadablepage;
 
 import constants.Urls;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.pompages.BasePomPage;
 
-public class ZipcodeFluentPomPage extends BaseFluentPomPage {
+public class ZipcodeLoadablePomPage extends BaseLoadablePomPage {
 
     private By ZIPCODE_INPUT = By.name("zip_code");
     private By CONTINUE_BUTTON = By.cssSelector("[value=Continue]");
 
-    public ZipcodeFluentPomPage(WebDriver driver) {
+    public ZipcodeLoadablePomPage(WebDriver driver) {
         super(driver);
     }
 
-    public ZipcodeFluentPomPage openZipCodePage() {
+    @Override
+    public boolean isPageOpened() {
+        return driver.findElement(CONTINUE_BUTTON).isDisplayed();
+    }
+
+    public void openZipCodePage() {
         driver.get(Urls.REGISTER_FORM_URL);
-        return this;
     }
 
-    public ZipcodeFluentPomPage inputZipcode(String zipCode) {
+    public void inputZipcode(String zipCode) {
         driver.findElement(ZIPCODE_INPUT).sendKeys(zipCode);
-        return this;
     }
 
-    public SignUpFormFluentPomPage clickContinue() {
+    public void clickContinue() {
         driver.findElement(CONTINUE_BUTTON).click();
-        return new SignUpFormFluentPomPage(driver);
     }
 
     public void performZipSend(String zipCode) {
