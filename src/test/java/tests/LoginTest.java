@@ -23,6 +23,7 @@ public class LoginTest extends BaseTest {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("user")));
         boolean isGreetingShown = driver.findElement(By.className("user")).isDisplayed();
+        setImplicitlyWait();
         Assert.assertTrue(isGreetingShown, "Greeting message isn't shown");
     }
 }
