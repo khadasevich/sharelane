@@ -28,8 +28,15 @@ public class BaseTest {
         System.setProperty("webdriver.chrome.driver", propertyManager.get(path));
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        setImplicitlyWait();
+    }
 
+    public void setImplicitlyWait() {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    }
+
+    public void removeImplicitlyWait() {
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     }
 
     @AfterMethod(alwaysRun = true)

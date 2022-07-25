@@ -2,13 +2,15 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
     private final String PASSWORD = "1111";
-    private final String EMAIL = "brian_rao@578.16.sharelane.com";
+    private final String EMAIL = "vladimir_baker@2137.7.sharelane.com";
 
     @Test
     public void loginTest() {
@@ -17,6 +19,9 @@ public class LoginTest extends BaseTest {
         emailInput.sendKeys(EMAIL);
         driver.findElement(By.name("password")).sendKeys(PASSWORD);
         driver.findElement(By.cssSelector("[value='Login']")).click();
+        removeImplicitlyWait();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("user")));
         boolean isGreetingShown = driver.findElement(By.className("user")).isDisplayed();
         Assert.assertTrue(isGreetingShown, "Greeting message isn't shown");
     }
