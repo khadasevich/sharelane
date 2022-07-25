@@ -1,6 +1,7 @@
 package tests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,7 +19,9 @@ public class LoginTest extends BaseTest {
         WebElement emailInput = driver.findElement(By.name("email"));
         emailInput.sendKeys(EMAIL);
         driver.findElement(By.name("password")).sendKeys(PASSWORD);
-        driver.findElement(By.cssSelector("[value='Login']")).click();
+        WebElement loginButton = driver.findElement(By.cssSelector("[value='Login']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", loginButton);
+
         removeImplicitlyWait();
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("user")));
