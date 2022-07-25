@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utils.PropertyManager;
@@ -26,7 +27,10 @@ public class BaseTest {
         PropertyManager propertyManager = new PropertyManager();
         propertyManager.loadData();
         System.setProperty("webdriver.chrome.driver", propertyManager.get(path));
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         setImplicitlyWait();
     }
