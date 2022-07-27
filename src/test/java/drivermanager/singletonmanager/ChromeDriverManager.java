@@ -47,6 +47,11 @@ public class ChromeDriverManager {
         return chromeDriverManager;
     }
 
+    public static ChromeDriverManager quitDriver() {
+        driver.quit();
+        return chromeDriverManager;
+    }
+
     public static WebDriver getDriver() {
         return driver;
     }

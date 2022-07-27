@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UploadFileWithoutArchitectureTest extends BaseWithoutArchitectureTest {
+public class UploadFileWithoutArchitectureTest extends BaseWithSingletonTest {
 
     @Test
     public void uploadFileTest() {
