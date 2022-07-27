@@ -6,16 +6,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UploadFileTest extends BaseTest {
+public class UploadFileWithoutArchitectureTest extends BaseWithoutArchitectureTest {
 
     @Test
     public void uploadFileTest() {

@@ -1,24 +1,18 @@
-package tests;
+package drivermanager.singletonmanager;
 
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import utils.PropertyManager;
 
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest {
+public class ChromeDriverManager {
 
-    public WebDriver driver;
+    private static ChromeDriverManager chromeDriverManager;
+    private static WebDriver driver;
 
-    @BeforeMethod
-    public void setUp() {
-        //Open Chrome browser
+    private ChromeDriverManager() {
         String os = System.getProperty("os.name");
         String path = "PATH_TO_DRIVER_WIN";
         if (!os.contains("Windows")) {
@@ -28,23 +22,32 @@ public class BaseTest {
         propertyManager.loadData();
         System.setProperty("webdriver.chrome.driver", propertyManager.get(path));
         ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
-
         driver = new ChromeDriver(options);
+    }
+
+    public static ChromeDriverManager getInstanceOfChromeDriver() {
+        if (chromeDriverManager == null) {
+            chromeDriverManager = new ChromeDriverManager();
+        }
+        return chromeDriverManager;
+    }
+
+    public static ChromeDriverManager startBrowserMaximize() {
         driver.manage().window().maximize();
-        setImplicitlyWait();
+        return chromeDriverManager;
     }
 
-    public void setImplicitlyWait() {
+    public static ChromeDriverManager setWait() {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        return chromeDriverManager;
     }
 
-    public void removeImplicitlyWait() {
+    public static ChromeDriverManager removeTimeout() {
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        return chromeDriverManager;
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        driver.quit();
+    public static WebDriver getDriver() {
+        return driver;
     }
 }

@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pages.fluentpage.ZipcodeFluentPomPage;
 import utils.FakeMessageGenerator;
 
-public class SignUpFluentPomTest extends BaseTest {
+public class SignUpFluentPomWithoutArchitectureTest extends BaseWithoutArchitectureTest {
 
     @Test
     public void fiveDigitZipCodeTest() {
