@@ -1,9 +1,6 @@
 package tests;
 
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
@@ -20,9 +17,9 @@ public class BaseWithoutArchitectureTest {
     public void setUp() {
         //Open Chrome browser
         String os = System.getProperty("os.name");
-        String path = "PATH_TO_DRIVER_WIN";
+        String path = "PATH_TO_CHROME_WIN";
         if (!os.contains("Windows")) {
-            path = "PATH_TO_DRIVER_MAC";
+            path = "PATH_TO_CHROME_MAC";
         }
         PropertyManager propertyManager = new PropertyManager();
         propertyManager.loadData();
