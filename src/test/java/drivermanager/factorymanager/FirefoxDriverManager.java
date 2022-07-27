@@ -14,7 +14,7 @@ public class FirefoxDriverManager extends DriverManager{
         }
         PropertyManager propertyManager = new PropertyManager();
         propertyManager.loadData();
-        System.setProperty("webdriver.firefox.driver", propertyManager.get(path));
+        System.setProperty("webdriver.gecko.driver", propertyManager.get(path));
         driver = new FirefoxDriver();
     }
 }
