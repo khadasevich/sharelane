@@ -1,10 +1,12 @@
 package tests;
 
+import drivermanager.factorymanager.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.pagefactorypages.FileUploadPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,20 @@ public class UploadFileWithoutArchitectureTest extends BaseWithFactoryTest {
         driver.get("http://the-internet.herokuapp.com/upload");
         driver.findElement(By.id("file-upload")).sendKeys(path);
         driver.findElement(By.id("file-submit")).click();
-        System.out.println("");
+        driverManager.removeTimeout();
+        String srt = driver.findElement(By.xpath("//div[@id='uploaded-files']")).getText().trim();
+        System.out.println(srt);
+    }
+
+    @Test
+    public void uploadFileTest2() {
+        FileUploadPage fileUploadPage = new FileUploadPage(driver);
+        fileUploadPage.openFileUploadPage();
+        fileUploadPage.sendFilePath();
+        fileUploadPage.uploadFile();
+
+        String conf = fileUploadPage.getUploadConfirmationMessage();
+        Assert.assertEquals(conf, "ass");
     }
 
     @Test
