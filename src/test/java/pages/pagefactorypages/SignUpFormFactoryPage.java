@@ -1,5 +1,6 @@
 package pages.pagefactorypages;
 
+import models.RegistrationModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,16 +33,12 @@ public class SignUpFormFactoryPage extends BaseFactoryPage {
         return registerButton.isDisplayed();
     }
 
-    public void sendRegistrationForm(String firstName,
-                                     String lastName,
-                                     String email,
-                                     String password,
-                                     String confirmPassword) {
-        firstNameInput.sendKeys(firstName);
-        lastNameInput.sendKeys(lastName);
-        emailInput.sendKeys(email);
-        passwordInput.sendKeys(password);
-        confirmPasswordInput.sendKeys(confirmPassword);
+    public void sendRegistrationForm(RegistrationModel registrationModel) {
+        firstNameInput.sendKeys(registrationModel.getFirstName());
+        lastNameInput.sendKeys(registrationModel.getLastName());
+        emailInput.sendKeys(registrationModel.getEmail());
+        passwordInput.sendKeys(registrationModel.getPassword());
+        confirmPasswordInput.sendKeys(registrationModel.getConfirmPassword());
         registerButton.click();
     }
 }

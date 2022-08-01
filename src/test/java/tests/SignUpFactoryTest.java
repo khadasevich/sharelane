@@ -1,13 +1,16 @@
 package tests;
 
+import models.RegistrationModel;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.pagefactorypages.AccountCreatedFactoryPage;
 import pages.pagefactorypages.SignUpFormFactoryPage;
 import pages.pagefactorypages.ZipcodeFactoryPage;
+import testdata.PrepareRegistrationData;
 import utils.FakeMessageGenerator;
 
-public class SignUpFactoryWithoutArchitectureTest extends BaseWithoutArchitectureTest {
+public class SignUpFactoryTest extends BaseWithoutArchitectureTest {
 
 
     @Test
@@ -27,12 +30,8 @@ public class SignUpFactoryWithoutArchitectureTest extends BaseWithoutArchitectur
         zipcodeFactoryPage.inputZipCode(FakeMessageGenerator.generateFiveDigitsZipCode());
         zipcodeFactoryPage.clickContinue();
         SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(driver);
-        String password = FakeMessageGenerator.generatePassword();
-        signUpFormFactoryPage.sendRegistrationForm(FakeMessageGenerator.generateFirstName(),
-                FakeMessageGenerator.generateLastName(),
-                FakeMessageGenerator.generateEmail(),
-                password,
-                password);
+        RegistrationModel registrationModel = PrepareRegistrationData.getValidRegistration();
+        signUpFormFactoryPage.sendRegistrationForm(registrationModel);
         AccountCreatedFactoryPage accountCreatedFactoryPage = new AccountCreatedFactoryPage(driver);
         Assert.assertTrue(accountCreatedFactoryPage.isMessageDisplayed(), "'Account is created!' message isn't displayed");
     }
