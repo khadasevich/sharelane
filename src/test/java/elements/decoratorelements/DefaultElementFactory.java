@@ -26,7 +26,7 @@ public class DefaultElementFactory {
 
     private <E extends Element> Class<? extends E> findImplementationFor(final Class<E> elementClass) {
         try {
-            return (Class<? extends E>) Class.forName(format("{0}.{1}Impl", getClass().getPackage().getName(), elementClass.getSimpleName()));
+            return (Class<? extends E>) Class.forName(format("%s.%sImpl", getClass().getPackage().getName(), elementClass.getSimpleName()));
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
