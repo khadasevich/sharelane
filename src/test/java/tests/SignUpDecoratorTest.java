@@ -17,6 +17,7 @@ public class SignUpDecoratorTest extends BaseWithoutArchitectureTest {
         zipCodeDecoratorPage.clickContinue();
         zipCodeDecoratorPage.goBackInHistory();
         zipCodeDecoratorPage.clearAndInputZip(FakeMessageGenerator.generateFiveDigitsZipCode());
+        zipCodeDecoratorPage.clickContinue();
         SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(driver);
         Assert.assertTrue(signUpFormFactoryPage.isRegisterDisplayed(), "'Register' button isn't displayed");
     }

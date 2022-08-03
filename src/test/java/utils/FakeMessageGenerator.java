@@ -33,4 +33,12 @@ public class FakeMessageGenerator {
         Faker faker = new Faker();
         return faker.letterify("???@1");
     }
+
+    public static String generateAccountName() {
+        return new Faker().company().name();
+    }
+
+    public static String generatePhone() {
+        return new Faker().phoneNumber().phoneNumber();
+    }
 }
