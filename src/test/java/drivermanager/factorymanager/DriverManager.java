@@ -19,7 +19,7 @@ public abstract class DriverManager {
     }
 
     public void setTimeout() {
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
     }
 
     public void removeTimeout() {

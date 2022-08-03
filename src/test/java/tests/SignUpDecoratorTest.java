@@ -6,7 +6,7 @@ import pages.decoratorpage.ZipCodeDecoratorPage;
 import pages.pagefactorypages.SignUpFormFactoryPage;
 import utils.FakeMessageGenerator;
 
-public class SignUpDecoratorTest extends BaseWithoutArchitectureTest {
+public class SignUpDecoratorTest extends BaseWithFactoryTest {
 
 
     @Test
