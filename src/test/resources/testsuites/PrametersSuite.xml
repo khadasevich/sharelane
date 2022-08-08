@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parameters Suite">
+    <parameter name="browserType" value="chrome"/>
+    <test name="File Upload">
+        <classes>
+            <class name="tests.UploadFileWithoutArchitectureTest"/>
+        </classes>
+    </test>
+</suite>

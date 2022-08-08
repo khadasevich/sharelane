@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Test">
+    <test name="Registration">
+        <classes>
+            <class name="tests.SignUpFluentPomWithoutArchitectureTest"> </class>
+            <class name="tests.SignUpDecoratorTest"> </class>
+            <class name="tests.SignUpFactoryTest"> </class>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Login">
+        <groups>
+            <run>
+                <exclude name="slow"></exclude>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.LoginWithoutArchitectureTest"> </class>
+        </classes>
+    </test> <!-- Test -->
+</suite>

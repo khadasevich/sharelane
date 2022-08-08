@@ -5,8 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.pagefactorypages.FileUploadPage;
+import utils.RetryAnalyzer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ public class UploadFileWithoutArchitectureTest extends BaseWithFactoryTest {
         System.out.println(srt);
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void uploadFileTest2() {
         FileUploadPage fileUploadPage = new FileUploadPage(driver);
         fileUploadPage.openFileUploadPage();
@@ -32,7 +34,7 @@ public class UploadFileWithoutArchitectureTest extends BaseWithFactoryTest {
         fileUploadPage.uploadFile();
 
         String conf = fileUploadPage.getUploadConfirmationMessage();
-        Assert.assertEquals(conf, "ass");
+        Assert.assertEquals(conf, "assure");
     }
 
     @Test
@@ -44,7 +46,7 @@ public class UploadFileWithoutArchitectureTest extends BaseWithFactoryTest {
         List<WebElement> enabledOptionsList = new ArrayList<>();
         for (WebElement option :
                 optionsList) {
-            if(option.isEnabled()) {
+            if (option.isEnabled()) {
                 enabledOptionsList.add(option);
             }
         }
@@ -53,4 +55,24 @@ public class UploadFileWithoutArchitectureTest extends BaseWithFactoryTest {
         Assert.assertEquals(actualSize, 3, "Check quantity");
         Assert.assertEquals(enabledSize, 2, "Check quantity of enabled");
     }
+
+    @DataProvider(name = "testData")
+    public Object[][] inputForTask() {
+        return new Object[][]{
+                {3, "Alex"},
+                {5, "Khadasevich"},
+                {15, "Alex Khadasevich"},
+                {6, "Alex"},
+                {10, "Khadasevich"},
+                {30, "Alex Khadasevich"},
+                {1, "Error"},
+                {-1, "Error"},
+        };
+    }
+
+    @Test(dataProvider = "testData")
+    public void test123(double number, String expectedString) {
+        System.out.println(number + " " + expectedString);
+    }
+
 }

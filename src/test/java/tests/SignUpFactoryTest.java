@@ -10,29 +10,29 @@ import pages.pagefactorypages.ZipcodeFactoryPage;
 import testdata.PrepareRegistrationData;
 import utils.FakeMessageGenerator;
 
-public class SignUpFactoryTest extends BaseWithoutArchitectureTest {
+public class SignUpFactoryTest extends BaseWithThreadLocalTest {
 
 
-    @Test
+    @Test(priority = 2, invocationCount = 2, threadPoolSize = 2)
     public void fiveDigitZipCodeTest() {
-        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(driver);
+        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(getDriver());
         zipcodeFactoryPage.openZipcodePage();
         zipcodeFactoryPage.inputZipCode(FakeMessageGenerator.generateFiveDigitsZipCode());
         zipcodeFactoryPage.clickContinue();
-        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(driver);
+        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(getDriver());
         Assert.assertTrue(signUpFormFactoryPage.isRegisterDisplayed(), "'Register' button isn't displayed");
     }
 
-    @Test
+    @Test(priority = 1, description = "User performs sign up to the system")
     public void signUpTest() {
-        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(driver);
+        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(getDriver());
         zipcodeFactoryPage.openZipcodePage();
         zipcodeFactoryPage.inputZipCode(FakeMessageGenerator.generateFiveDigitsZipCode());
         zipcodeFactoryPage.clickContinue();
-        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(driver);
+        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(getDriver());
         RegistrationModel registrationModel = PrepareRegistrationData.getValidRegistration();
         signUpFormFactoryPage.sendRegistrationForm(registrationModel);
-        AccountCreatedFactoryPage accountCreatedFactoryPage = new AccountCreatedFactoryPage(driver);
+        AccountCreatedFactoryPage accountCreatedFactoryPage = new AccountCreatedFactoryPage(getDriver());
         Assert.assertTrue(accountCreatedFactoryPage.isMessageDisplayed(), "'Account is created!' message isn't displayed");
     }
 }
