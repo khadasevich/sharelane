@@ -13,26 +13,26 @@ import utils.FakeMessageGenerator;
 public class SignUpFactoryTest extends BaseWithThreadLocalTest {
 
 
-    @Test(priority = 2, invocationCount = 2, threadPoolSize = 2)
+    @Test(priority = 2)
     public void fiveDigitZipCodeTest() {
-        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(getDriver());
+        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(threadLocalDriver.get());
         zipcodeFactoryPage.openZipcodePage();
         zipcodeFactoryPage.inputZipCode(FakeMessageGenerator.generateFiveDigitsZipCode());
         zipcodeFactoryPage.clickContinue();
-        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(getDriver());
+        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(threadLocalDriver.get());
         Assert.assertTrue(signUpFormFactoryPage.isRegisterDisplayed(), "'Register' button isn't displayed");
     }
 
     @Test(priority = 1, description = "User performs sign up to the system")
     public void signUpTest() {
-        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(getDriver());
+        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(threadLocalDriver.get());
         zipcodeFactoryPage.openZipcodePage();
         zipcodeFactoryPage.inputZipCode(FakeMessageGenerator.generateFiveDigitsZipCode());
         zipcodeFactoryPage.clickContinue();
-        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(getDriver());
+        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(threadLocalDriver.get());
         RegistrationModel registrationModel = PrepareRegistrationData.getValidRegistration();
         signUpFormFactoryPage.sendRegistrationForm(registrationModel);
-        AccountCreatedFactoryPage accountCreatedFactoryPage = new AccountCreatedFactoryPage(getDriver());
+        AccountCreatedFactoryPage accountCreatedFactoryPage = new AccountCreatedFactoryPage(threadLocalDriver.get());
         Assert.assertTrue(accountCreatedFactoryPage.isMessageDisplayed(), "'Account is created!' message isn't displayed");
     }
 }

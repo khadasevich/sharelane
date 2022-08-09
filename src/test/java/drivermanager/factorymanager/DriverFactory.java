@@ -8,7 +8,7 @@ public class DriverFactory {
 
         switch (driverType) {
             case CHROME:
-                driverManager = new ChromeDriverManager();
+                driverManager = new ChromeDriverManagerWithBoniGarcia();
                 break;
             case FIREFOX:
                 driverManager = new FirefoxDriverManager();

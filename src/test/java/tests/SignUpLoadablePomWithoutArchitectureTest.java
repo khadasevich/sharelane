@@ -6,16 +6,16 @@ import pages.loadablepage.SignUpFormLoadablePomPage;
 import pages.loadablepage.ZipcodeLoadablePomPage;
 import utils.FakeMessageGenerator;
 
-public class SignUpLoadablePomWithoutArchitectureTest extends BaseWithoutArchitectureTest {
+public class SignUpLoadablePomWithoutArchitectureTest extends BaseWithThreadLocalTest {
 
     @Test
     public void fiveDigitZipCodeTest() {
-        ZipcodeLoadablePomPage zipPage = new ZipcodeLoadablePomPage(driver);
+        ZipcodeLoadablePomPage zipPage = new ZipcodeLoadablePomPage(threadLocalDriver.get());
         zipPage.openZipCodePage();
         Assert.assertTrue(zipPage.isPageOpened(), "Continue button isn't displayed");
         zipPage.inputZipcode(FakeMessageGenerator.generateFiveDigitsZipCode());
         zipPage.clickContinue();
-        SignUpFormLoadablePomPage signUpFormLoadablePomPage = new SignUpFormLoadablePomPage(driver);
+        SignUpFormLoadablePomPage signUpFormLoadablePomPage = new SignUpFormLoadablePomPage(threadLocalDriver.get());
         Assert.assertTrue(signUpFormLoadablePomPage.isRegisterDisplayed(), "Register button isn't displayed");
     }
 

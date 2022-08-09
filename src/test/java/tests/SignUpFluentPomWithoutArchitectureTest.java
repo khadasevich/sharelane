@@ -5,11 +5,11 @@ import org.testng.annotations.Test;
 import pages.fluentpage.ZipcodeFluentPomPage;
 import utils.FakeMessageGenerator;
 
-public class SignUpFluentPomWithoutArchitectureTest extends BaseWithoutArchitectureTest {
+public class SignUpFluentPomWithoutArchitectureTest extends BaseWithThreadLocalTest {
 
     @Test
     public void fiveDigitZipCodeTest() {
-        ZipcodeFluentPomPage zipPage = new ZipcodeFluentPomPage(driver);
+        ZipcodeFluentPomPage zipPage = new ZipcodeFluentPomPage(threadLocalDriver.get());
         boolean isRegisterDisplayed = zipPage
                 .openZipCodePage()
                 .inputZipcode(FakeMessageGenerator.generateFiveDigitsZipCode())
