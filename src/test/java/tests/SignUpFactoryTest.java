@@ -1,6 +1,8 @@
 package tests;
 
 import models.RegistrationModel;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,14 +14,21 @@ import utils.FakeMessageGenerator;
 
 public class SignUpFactoryTest extends BaseWithThreadLocalTest {
 
+    private static  final Logger LOGGER = LogManager.getLogger(SignUpFactoryTest.class.getName());
 
     @Test(priority = 2)
     public void fiveDigitZipCodeTest() {
         ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(driverManager.getDriver());
+        LOGGER.info(String.format("Page %s initialized", ZipcodeFactoryPage.class.getName()));
+        LOGGER.info(String.format("Open %s page", ZipcodeFactoryPage.class.getName()));
         zipcodeFactoryPage.openZipcodePage();
+        LOGGER.info("Input zipcode");
         zipcodeFactoryPage.inputZipCode(FakeMessageGenerator.generateFiveDigitsZipCode());
+        LOGGER.info("Proceed with zipcode");
         zipcodeFactoryPage.clickContinue();
         SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(driverManager.getDriver());
+        LOGGER.info(String.format("Page %s initialized", SignUpFormFactoryPage.class.getName()));
+        LOGGER.info("Check if button is displayed");
         Assert.assertTrue(signUpFormFactoryPage.isRegisterDisplayed(), "'Register' button isn't displayed");
     }
 

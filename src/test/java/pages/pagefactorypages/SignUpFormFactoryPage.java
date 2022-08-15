@@ -1,11 +1,16 @@
 package pages.pagefactorypages;
 
 import models.RegistrationModel;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import tests.SignUpFactoryTest;
 
 public class SignUpFormFactoryPage extends BaseFactoryPage {
+
+    private static  final Logger LOGGER = LogManager.getLogger(SignUpFormFactoryPage.class.getName());
 
     @FindBy(css = "[value=Register]")
     private WebElement registerButton;
@@ -30,6 +35,7 @@ public class SignUpFormFactoryPage extends BaseFactoryPage {
     }
 
     public boolean isRegisterDisplayed() {
+        LOGGER.debug(String.format("Attempt to find Register button: %s", registerButton));
         return registerButton.isDisplayed();
     }
 
