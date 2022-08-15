@@ -15,24 +15,24 @@ public class SignUpFactoryTest extends BaseWithThreadLocalTest {
 
     @Test(priority = 2)
     public void fiveDigitZipCodeTest() {
-        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(threadLocalDriver.get());
+        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(driverManager.getDriver());
         zipcodeFactoryPage.openZipcodePage();
         zipcodeFactoryPage.inputZipCode(FakeMessageGenerator.generateFiveDigitsZipCode());
         zipcodeFactoryPage.clickContinue();
-        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(threadLocalDriver.get());
+        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(driverManager.getDriver());
         Assert.assertTrue(signUpFormFactoryPage.isRegisterDisplayed(), "'Register' button isn't displayed");
     }
 
     @Test(priority = 1, description = "User performs sign up to the system")
     public void signUpTest() {
-        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(threadLocalDriver.get());
+        ZipcodeFactoryPage zipcodeFactoryPage = new ZipcodeFactoryPage(driverManager.getDriver());
         zipcodeFactoryPage.openZipcodePage();
         zipcodeFactoryPage.inputZipCode(FakeMessageGenerator.generateFiveDigitsZipCode());
         zipcodeFactoryPage.clickContinue();
-        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(threadLocalDriver.get());
+        SignUpFormFactoryPage signUpFormFactoryPage = new SignUpFormFactoryPage(driverManager.getDriver());
         RegistrationModel registrationModel = PrepareRegistrationData.getValidRegistration();
         signUpFormFactoryPage.sendRegistrationForm(registrationModel);
-        AccountCreatedFactoryPage accountCreatedFactoryPage = new AccountCreatedFactoryPage(threadLocalDriver.get());
+        AccountCreatedFactoryPage accountCreatedFactoryPage = new AccountCreatedFactoryPage(driverManager.getDriver());
         Assert.assertTrue(accountCreatedFactoryPage.isMessageDisplayed(), "'Account is created!' message isn't displayed");
     }
 }

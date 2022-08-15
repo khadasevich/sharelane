@@ -9,7 +9,7 @@ public class SignUpFluentPomWithoutArchitectureTest extends BaseWithThreadLocalT
 
     @Test
     public void fiveDigitZipCodeTest() {
-        ZipcodeFluentPomPage zipPage = new ZipcodeFluentPomPage(threadLocalDriver.get());
+        ZipcodeFluentPomPage zipPage = new ZipcodeFluentPomPage(driverManager.getDriver());
         boolean isRegisterDisplayed = zipPage
                 .openZipCodePage()
                 .inputZipcode(FakeMessageGenerator.generateFiveDigitsZipCode())

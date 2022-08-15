@@ -10,12 +10,12 @@ public class SignUpLoadablePomWithoutArchitectureTest extends BaseWithThreadLoca
 
     @Test
     public void fiveDigitZipCodeTest() {
-        ZipcodeLoadablePomPage zipPage = new ZipcodeLoadablePomPage(threadLocalDriver.get());
+        ZipcodeLoadablePomPage zipPage = new ZipcodeLoadablePomPage(driverManager.getDriver());
         zipPage.openZipCodePage();
         Assert.assertTrue(zipPage.isPageOpened(), "Continue button isn't displayed");
         zipPage.inputZipcode(FakeMessageGenerator.generateFiveDigitsZipCode());
         zipPage.clickContinue();
-        SignUpFormLoadablePomPage signUpFormLoadablePomPage = new SignUpFormLoadablePomPage(threadLocalDriver.get());
+        SignUpFormLoadablePomPage signUpFormLoadablePomPage = new SignUpFormLoadablePomPage(driverManager.getDriver());
         Assert.assertTrue(signUpFormLoadablePomPage.isRegisterDisplayed(), "Register button isn't displayed");
     }
 
