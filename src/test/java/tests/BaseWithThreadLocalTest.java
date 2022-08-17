@@ -3,8 +3,11 @@ package tests;
 import drivermanager.factorymanager.DriverType;
 import drivermanager.threadlocalmanager.DriverThreadLocalManager;
 import drivermanager.threadlocalmanager.DriverThreadLocalManagerFactory;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
+import utils.TestListeners;
 
+@Listeners(TestListeners.class)
 public class BaseWithThreadLocalTest {
 
     DriverThreadLocalManager driverManager;
@@ -20,6 +23,10 @@ public class BaseWithThreadLocalTest {
         driverManager.createDriver();
         driverManager.startMaximize();
         driverManager.setTimeout();
+    }
+
+    public WebDriver getDriver() {
+        return driverManager.getDriver();
     }
 
     @AfterMethod(alwaysRun = true)

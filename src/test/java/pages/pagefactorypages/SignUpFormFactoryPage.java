@@ -1,5 +1,6 @@
 package pages.pagefactorypages;
 
+import io.qameta.allure.Step;
 import models.RegistrationModel;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -10,7 +11,7 @@ import tests.SignUpFactoryTest;
 
 public class SignUpFormFactoryPage extends BaseFactoryPage {
 
-    private static  final Logger LOGGER = LogManager.getLogger(SignUpFormFactoryPage.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(SignUpFormFactoryPage.class.getName());
 
     @FindBy(css = "[value=Register]")
     private WebElement registerButton;
@@ -34,11 +35,13 @@ public class SignUpFormFactoryPage extends BaseFactoryPage {
         super(driver);
     }
 
+    @Step("Check if 'Register' button is displayed")
     public boolean isRegisterDisplayed() {
         LOGGER.debug(String.format("Attempt to find Register button: %s", registerButton));
         return registerButton.isDisplayed();
     }
 
+    @Step("Perform Registration")
     public void sendRegistrationForm(RegistrationModel registrationModel) {
         firstNameInput.sendKeys(registrationModel.getFirstName());
         lastNameInput.sendKeys(registrationModel.getLastName());
