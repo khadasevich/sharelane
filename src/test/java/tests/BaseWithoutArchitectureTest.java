@@ -14,6 +14,7 @@ public class BaseWithoutArchitectureTest {
 
     public WebDriver driver;
 
+
     @BeforeMethod
     public void setUp() {
         //Open Chrome browser
