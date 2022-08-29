@@ -9,12 +9,17 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import pages.tmspages.CourseTypePage;
+import pages.tmspages.CoursesListPage;
+import pages.tmspages.MainPage;
 
 import java.awt.*;
 
-import static com.codeborne.selenide.Selenide.*;
-
 public class SearchSteps {
+
+    MainPage mainPage;
+    CourseTypePage courseTypePage;
+    CoursesListPage coursesListPage;
 
     @Before
     public void setUp() {
@@ -24,30 +29,29 @@ public class SearchSteps {
         int width = (int) size.getWidth();
         int height = (int) size.getHeight() - 50;
         Configuration.browserSize = String.format("%dx%d", width, height);
+        mainPage = new MainPage();
+        courseTypePage = new CourseTypePage();
+        coursesListPage = new CoursesListPage();
     }
 
     @Given("Main TMS page opened")
     public void mainTMSPageOpened() {
-        open("https://teachmeskills.by/");
+        mainPage.openMainPage();
     }
 
     @When("User goes to {string}")
     public void userGoesTo(String tabName) {
-        String tabXpath = String.format("//div[contains(@class, 'centerside')]//a[text()='%s']", tabName);
-        $(By.xpath(tabXpath)).shouldBe(Condition.visible).click();
+        mainPage.clickNavigationMenu(tabName);
     }
 
     @And("Selects {string}")
     public void selects(String courseType) {
-        String courseTypeXpath = String.format("//div[text()='%s']", courseType);
-        $(By.xpath(courseTypeXpath)).shouldBe(Condition.visible).hover();
-        $(By.xpath("(//div[text()='Перейти'])[1]")).click();
+        courseTypePage.selectCourseType(courseType);
     }
 
     @Then("{string} course presents on page")
     public void coursePresentsOnPage(String courseName) {
-        String courseNameXpath = String.format("//div[@aaa]//strong[contains(text(), '%s')]", courseName);
-        int quantityOfCourses = $$(By.xpath(courseNameXpath)).size();
+        int quantityOfCourses = coursesListPage.getQuantityOfCourses(courseName);
         Assert.assertEquals(quantityOfCourses, 2, "Quantity of courses != 2");
     }
 }
