@@ -1,0 +1,15 @@
+---
+doe: "John"
+int: 2
+pi: 3.14
+summer: false
+course-type:
+  - "offline"
+  - "online"
+courses:
+  fron-end: 3200
+  python: 2900
+  java: 3300
+  swift:
+    - 3200
+    - 3300
