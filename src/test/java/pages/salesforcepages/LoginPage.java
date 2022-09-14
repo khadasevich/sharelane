@@ -1,6 +1,5 @@
 package pages.salesforcepages;
 
-import constants.Credentials;
 import constants.Urls;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -23,8 +22,8 @@ public class LoginPage extends BasePage {
 
     public void loginToSalesforce() {
         driver.get(Urls.SALES_FORCE_LOGIN);
-        driver.findElement(usernameInput).sendKeys(Credentials.USERNAME);
-        driver.findElement(passwordInput).sendKeys(Credentials.PASSWORD);
+//        driver.findElement(usernameInput).sendKeys(Credentials.USERNAME);
+//        driver.findElement(passwordInput).sendKeys(Credentials.PASSWORD);
         TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
         byte[] sourceFile = takesScreenshot.getScreenshotAs(OutputType.BYTES);
         try {
