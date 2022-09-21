@@ -2,6 +2,7 @@ package pages.pompages;
 
 import constants.Urls;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 
 public class ZipcodePomPage extends BasePomPage {
@@ -28,6 +29,11 @@ public class ZipcodePomPage extends BasePomPage {
     public void performZipSend(String zipCode) {
         driver.get(Urls.REGISTER_FORM_URL);
         driver.findElement(ZIPCODE_INPUT).sendKeys(zipCode);
-        driver.findElement(CONTINUE_BUTTON).click();
+        try {
+            driver.findElement(CONTINUE_BUTTON).click();
+        } catch (StaleElementReferenceException staleElementReferenceException) {
+            driver.navigate().refresh();
+            driver.findElement(CONTINUE_BUTTON).click();
+        }
     }
 }

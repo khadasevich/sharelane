@@ -8,12 +8,16 @@ import java.sql.SQLException;
 
 public class DBDemo {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         ExecuteSqlQueries executeSqlQueries = new ExecuteSqlQueries();
         String query = String.format(SQLQueries.SELECT_STUDENT_BY_ID, "students", "1");
         ResultSet results = executeSqlQueries.selectByQuery(query);
-        StudentModel student = executeSqlQueries.getStudent(results);
-        System.out.println(student.toString());
-        executeSqlQueries.addUser();
+        try {
+            StudentModel student = executeSqlQueries.getStudent(results);
+            System.out.println(student.toString());
+            executeSqlQueries.addUser();
+        } catch (SQLException sqlException) {
+
+        }
     }
 }
