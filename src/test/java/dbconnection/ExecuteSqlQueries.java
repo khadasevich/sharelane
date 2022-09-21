@@ -45,13 +45,13 @@ public class ExecuteSqlQueries extends DBConnector {
     }
 
     public StudentModel getStudent(ResultSet resultSet) throws SQLException {
-        StudentModel studentModel = StudentModel.builder().build();
+        StudentModel students = StudentModel.builder().build();
         while (resultSet.next()) {
-            studentModel.setId(resultSet.getString("id"));
-            studentModel.setName(resultSet.getString("name"));
-            studentModel.setGroupId(resultSet.getString("group_id"));
+            students.setId(resultSet.getString("id"));
+            students.setName(resultSet.getString("name"));
+            students.setGroupId(resultSet.getString("group_id"));
         }
-        return studentModel;
+        return students;
     }
 
     public void writeResultSet(ResultSet resultSet) throws SQLException {

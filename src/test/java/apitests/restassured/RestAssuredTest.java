@@ -6,6 +6,10 @@ import io.restassured.path.json.JsonPath;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.instanceOf;
@@ -66,6 +70,7 @@ public class RestAssuredTest {
                 .job("AQA")
                 .build();
 
+
         RestAssured
                 .given()
                 .contentType(ContentType.JSON)
@@ -75,5 +80,47 @@ public class RestAssuredTest {
                 .put("https://reqres.in/api/users/2")
                 .then()
                 .statusCode(200);
+    }
+
+    @Test
+    public void createUserTest() {
+        UpdateUserModel updateBody = UpdateUserModel
+                .builder()
+                .name("Alex")
+                .job("AQA")
+                .build();
+
+
+        RestAssured
+                .given()
+                .contentType(ContentType.JSON)
+                .and()
+                .body(updateBody)
+                .when()
+                .put("https://reqres.in/api/users/2")
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    public void createMileStoneTest() {
+        String body = "{\"title\":\"NewStone2\",\"description\":\"Some\",\"status\":\"active\",\"due_date\":1663416589}";
+
+        RestAssured
+                .given()
+                .contentType(ContentType.JSON)
+                .header("Token", "2f6df94a25af2dd51f5ffe1cd97540684accd9ba")
+                .and()
+                .body(body)
+                .when()
+                .post("https://api.qase.io/v1/milestone/SHARELANE")
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    public void rtrtrt() {
+        List<String> collection = Arrays.asList("Highload", "High", "Load", "Highloadsdd");
+        System.out.println(collection.stream().sorted().collect(Collectors.toList()));
     }
 }
