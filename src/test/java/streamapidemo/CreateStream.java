@@ -62,12 +62,16 @@ public class CreateStream {
         return newCollection.stream().sorted().collect(Collectors.toList());
     }
 
+    public static void getOddElements() {
+        System.out.println(IntStream
+                .iterate(0, i -> i + 2)
+                .limit(newCollection.size() / 2 + Math.min(newCollection.size() % 2, 1))
+                .mapToObj(newCollection::get)
+                .collect(Collectors.toList()));
+    }
+
     public static void main(String[] args) {
-        System.out.println(getQuantityOfElements());
-        System.out.println(getFirstElement());
-        System.out.println(getLastElement());
-        System.out.println(skipFirstAndGetLastElement());
-        System.out.println(sortCollection());
+        getOddElements();
     }
 
 }
