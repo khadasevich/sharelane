@@ -11,10 +11,11 @@ public class DBConnector {
     public Statement statement;
 
     public void connect() {
+        String connection = "mysql://root:root@md-mysql:3306/agis2md_test";
         try {
             connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/aqa15?"
-                            + "user=root&password=admin&useSSL=true&serverTimezone=GMT");
+                    .getConnection("jdbc:mysql://366884cdce3b:3306/agis2md_test?"
+                            + "user=stage_aventusgroup_ro&password=q12wQ!@Wq12w");
             // Statements allow to issue SQL queries to the database
             statement = connect.createStatement();
         } catch (SQLException throwables) {

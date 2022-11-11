@@ -16,6 +16,8 @@ public class BaseWithFactoryTest {
     @BeforeSuite
     @Parameters({"browser"})
     public void setUp(@Optional("chrome") String browser) {
+        String username = System.getProperty("username");
+        String password = System.getProperty("password");
         DriverFactory driverFactory = new DriverFactory();
         DriverType type = null;
         if (browser.equals("chrome")) {
