@@ -14,8 +14,8 @@ public class DBConnector {
         String connection = "mysql://root:root@md-mysql:3306/agis2md_test";
         try {
             connect = DriverManager
-                    .getConnection("jdbc:mysql://366884cdce3b:3306/agis2md_test?"
-                            + "user=stage_aventusgroup_ro&password=q12wQ!@Wq12w");
+                    .getConnection("jdbc:mysql://yo:3306/asd?"
+                            + "user=yoyoy&password=12321");
             // Statements allow to issue SQL queries to the database
             statement = connect.createStatement();
         } catch (SQLException throwables) {

@@ -13,13 +13,7 @@ public class DefaultElementFactory {
             return findImplementationFor(elementClass)
                     .getDeclaredConstructor(WebElement.class)
                     .newInstance(wrappedElement);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
     }
